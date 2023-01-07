@@ -1,4 +1,5 @@
 ﻿using System;
+using UniRx;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ namespace DYakubenko
         [SerializeField] [Range(0, 100)] private int status = 0;
         
         [SerializeField] private int day = 0;
-
         
         
         private const string KeyMoney = "moneyValue";
@@ -33,6 +33,17 @@ namespace DYakubenko
             condition = PlayerPrefs.GetInt(KeyCondition, 50);
             status = PlayerPrefs.GetInt(KeyStatus, 0);
             day = PlayerPrefs.GetInt(KeyDay, 0);
+        }
+
+
+        public void SetDataSource()
+        {
+            PlayerPrefs.SetInt(KeyMoney, money);
+            PlayerPrefs.SetInt(KeyHealth, health);
+            PlayerPrefs.SetInt(KeyHunger, hunger);
+            PlayerPrefs.SetInt(KeyCondition, condition);
+            PlayerPrefs.SetInt(KeyStatus, status);
+            PlayerPrefs.SetInt(KeyDay, day);
         }
         
     }
