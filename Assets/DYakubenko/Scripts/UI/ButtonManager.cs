@@ -14,6 +14,12 @@ namespace DYakubenko.Scripts.UI
         [SerializeField] private Button statistics = null!;
         [SerializeField] private Button settings = null!;
         
+        [Space]
+        [SerializeField] private GameObject trainingObj = null!;
+        [SerializeField] private GameObject shopObj = null!;
+        [SerializeField] private GameObject statisticsObj = null!;
+        [SerializeField] private GameObject settingsObj = null!;
+        
 
 
         private void Awake()
@@ -23,21 +29,53 @@ namespace DYakubenko.Scripts.UI
             {
                 throw new NullReferenceException();
             }
+            
+            if (trainingObj == null || shopObj == null 
+                || statisticsObj == null || settingsObj == null)
+            {
+                throw new NullReferenceException();
+            }
         }
 
         private void Start()
         {
-            home.onClick.AddListener(test);
-            training.onClick.AddListener(test);
-            shop.onClick.AddListener(test);
-            statistics.onClick.AddListener(test);
-            settings.onClick.AddListener(test);
+            home.onClick.AddListener(CloseAllObj);
+            training.onClick.AddListener(OpenTraning);
+            shop.onClick.AddListener(OpenShop);
+            statistics.onClick.AddListener(OpenStatistics);
+            settings.onClick.AddListener(OpenSetting);
         }
 
-        void test()
+        private void OpenTraning()
         {
-            print("test");
+            CloseAllObj();
+            trainingObj.SetActive(true);
         }
         
+        private void OpenShop()
+        {
+            CloseAllObj();
+            shopObj.SetActive(true);
+        }
+        
+        private void OpenStatistics()
+        {
+            CloseAllObj();
+            statisticsObj.SetActive(true);
+        }
+        
+        private void OpenSetting()
+        {
+            CloseAllObj();
+            settingsObj.SetActive(true);
+        }
+
+        private void CloseAllObj()
+        {
+            trainingObj.SetActive(false);
+            shopObj.SetActive(false);
+            statisticsObj.SetActive(false);
+            settingsObj.SetActive(false);
+        }
     }
 }

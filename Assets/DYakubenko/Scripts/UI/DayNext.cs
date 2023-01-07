@@ -10,7 +10,7 @@ namespace DYakubenko.Scripts.UI
     public class DayNext : MonoBehaviour
     {
         [SerializeField] private Button nextDayButton = null!;
-        
+
 
 
         private void Awake()

@@ -2,7 +2,7 @@
 
 namespace DYakubenko
 {
-    public interface ISource
+    public interface ISourceUpdate
     {
         public void MoneyUpdate(int value);
         
@@ -15,5 +15,7 @@ namespace DYakubenko
         public void StatusUpdate(int value);
         
         public void DayUpdate(int value);
+
+        public void TimeTODOUpdate(int value);
     }
 }
