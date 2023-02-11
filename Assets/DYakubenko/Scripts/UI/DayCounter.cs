@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace DYakubenko.Scripts.UI
 {
-    public class DayNext : MonoBehaviour
+    public class DayCounter : MonoBehaviour
     {
         [SerializeField] private Button nextDayButton = null!;
 

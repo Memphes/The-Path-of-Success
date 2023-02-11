@@ -4,17 +4,22 @@ using System;
 using DYakubenko.Scripts.UI;
 using UnityEngine;
 
-namespace DYakubenko
+namespace DYakubenko.Scripts
 {
     public class EntryPoint : MonoBehaviour
     {
-         [SerializeField] private Sources _sources = null!;
-         [SerializeField] private ButtonManager _buttonManager = null!;
+         [SerializeField] private Sources sources = null!;
+         [SerializeField] private ButtonManager buttonManager = null!;
 
 
         private void Awake()
         {
-            if (_sources == null)
+            if (sources == null)
+            {
+                throw new NullReferenceException();
+            }
+            
+            if (buttonManager == null)
             {
                 throw new NullReferenceException();
             }
@@ -22,7 +27,8 @@ namespace DYakubenko
 
         private void Start()
         {
-            var value =_sources.Test("money", 170);
+            sources.Load();
+            var value =sources.GetSource("money", 170);
             print(value);
         }
         
