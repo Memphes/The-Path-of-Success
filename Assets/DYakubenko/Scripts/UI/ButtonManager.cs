@@ -24,14 +24,19 @@ namespace DYakubenko.Scripts.UI
 
         private void Awake()
         {
-            if (home == null || training == null || shop == null 
-                || statistics == null || settings == null)
+            if (home == null 
+                || training == null 
+                || shop == null 
+                || statistics == null 
+                || settings == null)
             {
                 throw new NullReferenceException();
             }
             
-            if (trainingObj == null || shopObj == null 
-                || statisticsObj == null || settingsObj == null)
+            if (trainingObj == null 
+                || shopObj == null 
+                || statisticsObj == null 
+                || settingsObj == null)
             {
                 throw new NullReferenceException();
             }

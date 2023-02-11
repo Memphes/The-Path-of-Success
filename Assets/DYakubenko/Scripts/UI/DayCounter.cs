@@ -11,7 +11,12 @@ namespace DYakubenko.Scripts.UI
     {
         [SerializeField] private Button nextDayButton = null!;
 
+        public DayCounter(Button nextDayButton)
+        {
+            this.nextDayButton = nextDayButton;
+        }
 
+        public event Action? DayUpdated;
 
         private void Awake()
         {
@@ -28,7 +33,8 @@ namespace DYakubenko.Scripts.UI
 
         private void NextDay()
         {
-            print("test");
+            print("Next Day");
+            DayUpdated ?.Invoke();
         }
     }
 }

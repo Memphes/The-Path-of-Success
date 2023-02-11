@@ -148,17 +148,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5406604}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.19558164, w: 0.9806875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96173186}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 22.557}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -185.7, y: -0.31519}
+  m_AnchoredPosition: {x: -185.7, y: -0.31515503}
   m_SizeDelta: {x: 50.1562, y: 50.8327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5406606
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 29965517}
   - component: {fileID: 29965516}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MoneyUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -542,6 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185212333}
   - component: {fileID: 185212334}
+  - component: {fileID: 185212335}
   m_Layer: 5
   m_Name: Statistics
   m_TagString: Untagged
@@ -597,6 +598,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &185212335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185212332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519adc8e65d5498ea2fa8fceb4a6cf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyUI: {fileID: 29965516}
+  healthUI: {fileID: 715873644}
+  hungerUI: {fileID: 2073639202}
+  conditionUI: {fileID: 96173187}
+  statusUI: {fileID: 977132036}
+  dayUI: {fileID: 1375305473}
+  timeTodoUI: {fileID: 0}
 --- !u!1 &194984745
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,8 +2108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1227314, y: 0}
   m_AnchorMax: {x: 0.9331612, y: 0.79274935}
-  m_AnchoredPosition: {x: -41.7111, y: -1.1398926}
-  m_SizeDelta: {x: 525.8872, y: -3.8152}
+  m_AnchoredPosition: {x: -41.71109, y: -46.58014}
+  m_SizeDelta: {x: 525.8872, y: -94.6957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771449820
 MonoBehaviour:
@@ -2477,7 +2497,7 @@ GameObject:
   - component: {fileID: 977132037}
   - component: {fileID: 977132036}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: StatusUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2550,8 +2570,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2880,7 +2900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 1}
+  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3263,7 +3283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 1}
+  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3321,7 +3341,7 @@ GameObject:
   - component: {fileID: 1375305474}
   - component: {fileID: 1375305473}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3807,7 +3827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 1}
+  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3897,8 +3917,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3d1fc99958bee468eaf2a8c83984fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sources: {fileID: 551485886}
-  _buttonManager: {fileID: 1057350761}
+  sources: {fileID: 551485886}
+  buttonManager: {fileID: 1057350761}
+  dayCounter: {fileID: 1245750969}
+  statisticView: {fileID: 185212335}
 --- !u!1 &1711214324
 GameObject:
   m_ObjectHideFlags: 0
@@ -4518,7 +4540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 1}
+  m_Color: {r: 0.5354664, g: 0.5943396, b: 0.5833944, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4754,7 +4776,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.509
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -10,28 +10,47 @@ namespace DYakubenko.Scripts
     {
          [SerializeField] private Sources sources = null!;
          [SerializeField] private ButtonManager buttonManager = null!;
+         [SerializeField] private DayCounter dayCounter = null!;
+         [SerializeField] private StatisticView statisticView = null!;
 
 
         private void Awake()
         {
-            if (sources == null)
+            if (sources == null 
+                || buttonManager == null 
+                || dayCounter == null 
+                || statisticView == null)
             {
                 throw new NullReferenceException();
             }
             
-            if (buttonManager == null)
-            {
-                throw new NullReferenceException();
-            }
         }
 
         private void Start()
         {
             sources.Load();
-            var value =sources.GetSource("money", 170);
-            print(value);
+            sources.SourceUpdateALl();
         }
-        
+
+        public void DayNext()
+        {
+            sources.AddSource("day", 1);
+            sources.AddSource("status", 1);
+            
+            
+            sources.Save();
+        }
+
+        private void OnEnable()
+        {
+            dayCounter.DayUpdated += DayNext;
+            sources.SourceUpdate += statisticView.UpdateSource;
+        }
+
+        private void OnDestroy()
+        {
+            dayCounter.DayUpdated -= DayNext;
+        }
     }
 }
 
