@@ -13,7 +13,7 @@ namespace DYakubenko.Scripts.UI
         [SerializeField] private TextMeshProUGUI moneyUI = null!;
         [SerializeField] private Slider healthUI = null!;
         [SerializeField] private Slider hungerUI = null!;
-        [SerializeField] private Slider conditionUI = null!;
+        [SerializeField] private Slider moodUI = null!;
         [SerializeField] private TextMeshProUGUI statusUI = null!;
         [SerializeField] private TextMeshProUGUI dayUI = null!;
         [SerializeField] private TextMeshProUGUI timeTodoUI = null!;
@@ -24,7 +24,7 @@ namespace DYakubenko.Scripts.UI
             if (moneyUI == null 
                 || healthUI == null 
                 || hungerUI == null 
-                || conditionUI == null 
+                || moodUI == null 
                 || statusUI == null
                 || dayUI == null
                 || timeTodoUI == null)
@@ -37,7 +37,7 @@ namespace DYakubenko.Scripts.UI
         {
             healthUI.maxValue = 100;
             hungerUI.maxValue = 100;
-            conditionUI.maxValue = 100;
+            moodUI.maxValue = 100;
         }
 
         public void UpdateSource(string nameSource, int value)
@@ -54,11 +54,11 @@ namespace DYakubenko.Scripts.UI
                     hungerUI.value = value;
                     break;
                 case "condition" :
-                    conditionUI.value = value;
+                    moodUI.value = value;
                     break;
                 case "status" :
                     switch (value)
-                    {
+                    { 
                         case 0 :
                             statusUI.text = "Бомж";
                             break;

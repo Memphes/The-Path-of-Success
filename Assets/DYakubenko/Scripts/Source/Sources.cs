@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-namespace DYakubenko
+namespace DYakubenko.Scripts.Source
 {
     public class Sources : MonoBehaviour
     {
@@ -54,6 +53,7 @@ namespace DYakubenko
         {
             var json = JsonConvert.SerializeObject(_sourcesHub);
             PlayerPrefs.SetString("sourcesKey", json);
+            SourceUpdateALl();
         }
 
         
@@ -67,15 +67,19 @@ namespace DYakubenko
                     {"money", 100},
                     {"health" , 70},
                     {"hunger", 100},
-                    {"condition", 50},
+                    {"mood", 50},
                     {"status", 1 },
                     {"day", 1 },
-                    {"timeTODO", 11}
-            
+                    {"timeTODO", 11},
+                    {"constTimeTODO", 11}
                 }
                 : JsonConvert.DeserializeObject<Dictionary<string, int>>(raw);
-            
-            
+            SourceUpdateALl();
+        }
+        
+        public void TimeUpdate()
+        {
+            _sourcesHub!["timeTODO"] = _sourcesHub["constTimeTODO"];
         }
 
         public void SourceUpdateALl()
