@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ namespace DYakubenko.Scripts.UI
 {
     public class DayCounter : MonoBehaviour
     {
-        [SerializeField] private Button nextDayButton = null!;
+        [SerializeField] private Button nextDayButton;
 
         public DayCounter(Button nextDayButton)
         {

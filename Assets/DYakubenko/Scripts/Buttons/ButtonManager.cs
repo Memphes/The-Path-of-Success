@@ -11,13 +11,13 @@ namespace DYakubenko.Scripts.UI
         [SerializeField] private Button home = null!;
         [SerializeField] private Button training = null!;
         [SerializeField] private Button shop = null!;
-        [SerializeField] private Button statistics = null!;
+        [SerializeField] private Button activity = null!;
         [SerializeField] private Button settings = null!;
         
         [Space]
         [SerializeField] private GameObject trainingObj = null!;
         [SerializeField] private GameObject shopObj = null!;
-        [SerializeField] private GameObject statisticsObj = null!;
+        [SerializeField] private GameObject activityObj = null!;
         [SerializeField] private GameObject settingsObj = null!;
         
 
@@ -27,7 +27,7 @@ namespace DYakubenko.Scripts.UI
             if (home == null 
                 || training == null 
                 || shop == null 
-                || statistics == null 
+                || activity == null 
                 || settings == null)
             {
                 throw new NullReferenceException();
@@ -35,7 +35,7 @@ namespace DYakubenko.Scripts.UI
             
             if (trainingObj == null 
                 || shopObj == null 
-                || statisticsObj == null 
+                || activityObj == null 
                 || settingsObj == null)
             {
                 throw new NullReferenceException();
@@ -47,7 +47,7 @@ namespace DYakubenko.Scripts.UI
             home.onClick.AddListener(CloseAllObj);
             training.onClick.AddListener(OpenTraning);
             shop.onClick.AddListener(OpenShop);
-            statistics.onClick.AddListener(OpenStatistics);
+            activity.onClick.AddListener(Openactivitys);
             settings.onClick.AddListener(OpenSetting);
         }
 
@@ -63,10 +63,10 @@ namespace DYakubenko.Scripts.UI
             shopObj.SetActive(true);
         }
         
-        private void OpenStatistics()
+        private void Openactivitys()
         {
             CloseAllObj();
-            statisticsObj.SetActive(true);
+            activityObj.SetActive(true);
         }
         
         private void OpenSetting()
@@ -79,7 +79,7 @@ namespace DYakubenko.Scripts.UI
         {
             trainingObj.SetActive(false);
             shopObj.SetActive(false);
-            statisticsObj.SetActive(false);
+            activityObj.SetActive(false);
             settingsObj.SetActive(false);
         }
     }

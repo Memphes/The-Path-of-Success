@@ -17,7 +17,7 @@ namespace DYakubenko.Scripts.UI
         [SerializeField] private TextMeshProUGUI statusUI = null!;
         [SerializeField] private TextMeshProUGUI dayUI = null!;
         [SerializeField] private TextMeshProUGUI timeTodoUI = null!;
-        
+
 
         private void Awake()
         {
@@ -35,7 +35,9 @@ namespace DYakubenko.Scripts.UI
 
         private void Start()
         {
-            
+            healthUI.maxValue = 100;
+            hungerUI.maxValue = 100;
+            conditionUI.maxValue = 100;
         }
 
         public void UpdateSource(string nameSource, int value)
@@ -80,7 +82,7 @@ namespace DYakubenko.Scripts.UI
                 case "day" :
                     dayUI.text = value.ToString();
                     break;
-                case "timeTodo" :
+                case "timeTODO" :
                     timeTodoUI.text = value.ToString();
                     break;
             }

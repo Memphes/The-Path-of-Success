@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using DYakubenko.Scripts.Buttons;
 using DYakubenko.Scripts.UI;
 using UnityEngine;
 
@@ -13,8 +14,7 @@ namespace DYakubenko.Scripts
          [SerializeField] private DayCounter dayCounter = null!;
          [SerializeField] private StatisticView statisticView = null!;
 
-
-        private void Awake()
+         private void Awake()
         {
             if (sources == null 
                 || buttonManager == null 
@@ -30,12 +30,13 @@ namespace DYakubenko.Scripts
         {
             sources.Load();
             sources.SourceUpdateALl();
+            
         }
 
         public void DayNext()
         {
             sources.AddSource("day", 1);
-            sources.AddSource("status", 1);
+            
             
             
             sources.Save();
