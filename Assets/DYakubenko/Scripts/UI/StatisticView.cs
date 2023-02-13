@@ -15,7 +15,7 @@ namespace DYakubenko.Scripts.UI
         [SerializeField] private Slider hungerUI = null!;
         [SerializeField] private Slider moodUI = null!;
         [SerializeField] private TextMeshProUGUI statusUI = null!;
-        [SerializeField] private TextMeshProUGUI dayUI = null!;
+        [SerializeField] private TextMeshProUGUI monthUI = null!;
         [SerializeField] private TextMeshProUGUI timeTodoUI = null!;
 
 
@@ -26,7 +26,7 @@ namespace DYakubenko.Scripts.UI
                 || hungerUI == null 
                 || moodUI == null 
                 || statusUI == null
-                || dayUI == null
+                || monthUI == null
                 || timeTodoUI == null)
             {
                 throw new NullReferenceException();
@@ -44,19 +44,19 @@ namespace DYakubenko.Scripts.UI
         {
             switch (nameSource)
             {
-                case "money" :
+                case "Money" :
                     moneyUI.text = value.ToString();
                     break;
-                case "health" :
+                case "Health" :
                     healthUI.value = value;
                     break;
-                case "hunger" :
+                case "Hunger" :
                     hungerUI.value = value;
                     break;
-                case "condition" :
+                case "Mood" :
                     moodUI.value = value;
                     break;
-                case "status" :
+                case "Status" :
                     switch (value)
                     { 
                         case 0 :
@@ -79,10 +79,10 @@ namespace DYakubenko.Scripts.UI
                            break;
                     }
                     break;
-                case "day" :
-                    dayUI.text = value.ToString();
+                case "Month" :
+                    monthUI.text = value.ToString();
                     break;
-                case "timeTODO" :
+                case "TimeTODO" :
                     timeTodoUI.text = value.ToString();
                     break;
             }

@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using DYakubenko.Scripts.Buttons;
 using DYakubenko.Scripts.Conditions;
 using DYakubenko.Scripts.Source;
 using DYakubenko.Scripts.UI;
@@ -13,7 +12,7 @@ namespace DYakubenko.Scripts
     {
          [SerializeField] private Sources sources = null!;
          [SerializeField] private ButtonManager buttonManager = null!;
-         [SerializeField] private DayCounter dayCounter = null!;
+         [SerializeField] private MonthCounter monthCounter = null!;
          [SerializeField] private StatisticView statisticView = null!;
          
          [Space]
@@ -25,7 +24,7 @@ namespace DYakubenko.Scripts
         {
             if (sources == null 
                 || buttonManager == null 
-                || dayCounter == null 
+                || monthCounter == null 
                 || statisticView == null
                 || healthCondition == null
                 || hungerCondition == null
@@ -41,10 +40,10 @@ namespace DYakubenko.Scripts
             sources.Load();
         }
 
-        public void DayNext()
+        public void MonthNext()
         {
             sources.TimeUpdate();
-            sources.AddSource("day", 1);
+            sources.AddSource("Month", 1);
 
             
             sources.Save();
@@ -52,13 +51,13 @@ namespace DYakubenko.Scripts
 
         private void OnEnable()
         {
-            dayCounter.DayUpdated += DayNext;
+            monthCounter.MonthUpdated += MonthNext;
             sources.SourceUpdate += statisticView.UpdateSource;
         }
 
         private void OnDestroy()
         {
-            dayCounter.DayUpdated -= DayNext;
+            monthCounter.MonthUpdated -= MonthNext;
             sources.SourceUpdate -= statisticView.UpdateSource;
         }
     }

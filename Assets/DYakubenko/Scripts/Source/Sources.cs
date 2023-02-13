@@ -14,6 +14,8 @@ namespace DYakubenko.Scripts.Source
         
         public event Action<string, int>? SourceUpdate;
 
+        
+        
         private void ActionUpdate(string nameSource)
         {
             SourceUpdate?.Invoke(nameSource, _sourcesHub![nameSource]);
@@ -64,14 +66,14 @@ namespace DYakubenko.Scripts.Source
             _sourcesHub = string.IsNullOrWhiteSpace(raw)
                 ? new Dictionary<string, int>()
                 {
-                    {"money", 100},
-                    {"health" , 70},
-                    {"hunger", 100},
-                    {"mood", 50},
-                    {"status", 1 },
-                    {"day", 1 },
-                    {"timeTODO", 11},
-                    {"constTimeTODO", 11}
+                    {"Money", 100},
+                    {"Health" , 70},
+                    {"Hunger", 100},
+                    {"Mood", 50},
+                    {"Status", 1 },
+                    {"Month", 1 },
+                    {"TimeTODO", 180},
+                    {"ConstTimeTODO", 180}
                 }
                 : JsonConvert.DeserializeObject<Dictionary<string, int>>(raw);
             SourceUpdateALl();
@@ -79,7 +81,7 @@ namespace DYakubenko.Scripts.Source
         
         public void TimeUpdate()
         {
-            _sourcesHub!["timeTODO"] = _sourcesHub["constTimeTODO"];
+            _sourcesHub!["TimeTODO"] = _sourcesHub["ConstTimeTODO"];
         }
 
         public void SourceUpdateALl()

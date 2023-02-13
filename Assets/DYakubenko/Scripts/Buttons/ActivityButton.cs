@@ -44,14 +44,14 @@ namespace DYakubenko.Scripts.Buttons
 
         private void CheckToDo()
         {
-            var result = source.GetSource("timeTODO", timeCount);
+            var result = source.GetSource("TimeTODO", timeCount);
             if (result < 0)
             {
                 print(result);
             }
             else
             {
-                source.AddSource("money", moneyCount);
+                source.AddSource("Money", moneyCount);
             }
         }
     }
