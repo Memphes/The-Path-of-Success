@@ -11,6 +11,9 @@ namespace DYakubenko.Scripts
     public class EntryPoint : MonoBehaviour
     {
          [SerializeField] private Sources sources = null!;
+         [SerializeField] private Possession possession = null!;
+         
+         [Space]
          [SerializeField] private ButtonManager buttonManager = null!;
          [SerializeField] private MonthCounter monthCounter = null!;
          [SerializeField] private StatisticView statisticView = null!;
@@ -28,7 +31,8 @@ namespace DYakubenko.Scripts
                 || statisticView == null
                 || healthCondition == null
                 || hungerCondition == null
-                || moodCondition == null)
+                || possession == null
+                )
             {
                 throw new NullReferenceException();
             }
@@ -38,6 +42,8 @@ namespace DYakubenko.Scripts
         private void Start()
         {
             sources.Load();
+            possession.LoadPossession();
+            possession.PossessionRefreshALl();
         }
 
         public void MonthNext()
@@ -47,6 +53,7 @@ namespace DYakubenko.Scripts
 
             
             sources.Save();
+            possession.SavePossession();
         }
 
         private void OnEnable()

@@ -27,7 +27,8 @@ namespace DYakubenko.Scripts.UI
                 || moodUI == null 
                 || statusUI == null
                 || monthUI == null
-                || timeTodoUI == null)
+                || timeTodoUI == null
+                )
             {
                 throw new NullReferenceException();
             }
@@ -63,13 +64,13 @@ namespace DYakubenko.Scripts.UI
                             statusUI.text = "Бомж";
                             break;
                        case 1 :
-                           statusUI.text = "Работник";
+                           statusUI.text = "Студент";
                            break;
                        case 2 :
-                           statusUI.text = "Предприниматель";
+                           statusUI.text = "Работник";
                            break;
                        case 3 :
-                           statusUI.text = "Глава компании";
+                           statusUI.text = "Предприниматель";
                            break;
                        case 4 :
                            statusUI.text = "Бизнесмен";

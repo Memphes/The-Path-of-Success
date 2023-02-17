@@ -9,9 +9,8 @@ namespace DYakubenko.Scripts.Source
 {
     public class Sources : MonoBehaviour
     {
-        
+
         private Dictionary<string, int>? _sourcesHub = new Dictionary<string, int>();
-        
         public event Action<string, int>? SourceUpdate;
 
         
@@ -19,6 +18,11 @@ namespace DYakubenko.Scripts.Source
         private void ActionUpdate(string nameSource)
         {
             SourceUpdate?.Invoke(nameSource, _sourcesHub![nameSource]);
+        }
+
+        public int CheckSource(string nameSource)
+        {
+            return _sourcesHub![nameSource];
         }
 
         public int GetSource (string nameSource, int count)
@@ -92,8 +96,8 @@ namespace DYakubenko.Scripts.Source
             }
         }
 
-        [ContextMenu(nameof(ResetSources))]
-        public void ResetSources()
+        [ContextMenu(nameof(ResetAllSources))]
+        public void ResetAllSources()
         {
             PlayerPrefs.DeleteAll();
         }

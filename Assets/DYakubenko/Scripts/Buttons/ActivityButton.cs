@@ -21,6 +21,9 @@ namespace DYakubenko.Scripts.Buttons
         [SerializeField] private TextMeshProUGUI timeText = null!;
         [SerializeField] private TextMeshProUGUI moneyText = null!;
 
+        [Space] 
+        [SerializeField] private Possession.ChoicePossession possessionValue;
+
 
         private void Awake()
         {
@@ -51,9 +54,15 @@ namespace DYakubenko.Scripts.Buttons
             }
             else
             {
-                source.AddSource("Money", moneyCount);
+                
             }
         }
+
+        private void CheckPossession()
+        {
+            
+        }
+
     }
 
 }
