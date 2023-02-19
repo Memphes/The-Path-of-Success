@@ -11,7 +11,7 @@ namespace DYakubenko.Scripts.Source
     {
         private Dictionary<string, bool>? _possession = new Dictionary<string, bool>();
 
-        public event Action<string, bool> PossessionUpdate;
+        public event Action<string, bool> PossessionUpdate = null!;
 
 
         public bool GetPossession(string namePossession)

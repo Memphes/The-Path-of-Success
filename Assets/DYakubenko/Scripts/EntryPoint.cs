@@ -31,6 +31,7 @@ namespace DYakubenko.Scripts
                 || statisticView == null
                 || healthCondition == null
                 || hungerCondition == null
+                || moodCondition == null
                 || possession == null
                 )
             {
@@ -46,7 +47,7 @@ namespace DYakubenko.Scripts
             possession.PossessionRefreshALl();
         }
 
-        public void MonthNext()
+        private void MonthNext()
         {
             sources.TimeUpdate();
             sources.AddSource("Month", 1);
