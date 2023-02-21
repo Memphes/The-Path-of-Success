@@ -2,6 +2,7 @@
 
 using System;
 using DYakubenko.Scripts.Conditions;
+using DYakubenko.Scripts.Images;
 using DYakubenko.Scripts.Source;
 using DYakubenko.Scripts.UI;
 using UnityEngine;
@@ -23,6 +24,10 @@ namespace DYakubenko.Scripts
          [SerializeField] private HungerCondition hungerCondition = null!;
          [SerializeField] private MoodCondition moodCondition = null!;
 
+         [Space] 
+         [SerializeField] private HumanImage humanImage = null!;
+         [SerializeField] private BackGroundImage backGroundImage = null!;
+
          private void Awake()
         {
             if (sources == null 
@@ -33,6 +38,8 @@ namespace DYakubenko.Scripts
                 || hungerCondition == null
                 || moodCondition == null
                 || possession == null
+                || humanImage == null
+                || backGroundImage == null
                 )
             {
                 throw new NullReferenceException();
@@ -45,6 +52,10 @@ namespace DYakubenko.Scripts
             sources.Load();
             possession.LoadPossession();
             possession.PossessionRefreshALl();
+            var currentStatus = sources.CheckSource("Status");
+            humanImage.ChangeHumanImage(currentStatus);
+            backGroundImage.ChangeBackgroundImage(currentStatus);
+            
         }
 
         private void MonthNext()
