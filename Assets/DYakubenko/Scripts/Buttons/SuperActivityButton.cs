@@ -10,6 +10,15 @@ namespace DYakubenko.Scripts.Buttons
 {
     public class SuperActivityButton : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI timeText = null!;
+        [SerializeField] private TextMeshProUGUI moneyText = null!;
+        [SerializeField] private TextMeshProUGUI conditionText = null!;
+        [SerializeField] private TextMeshProUGUI blockText = null!;
+        
+        [Space] 
+        [SerializeField] private Possession.ChoicePossession possessionValue;
+        
+        [Space]
         [SerializeField] private Button thisButton = null!;
         [SerializeField] private Possession possession = null!;
 
@@ -18,15 +27,13 @@ namespace DYakubenko.Scripts.Buttons
         [SerializeField] private int getTimeTodoSource;
 
         [Space]
-        [SerializeField] private ButtonsSource[] takeSource = null!;
-        [SerializeField] private int[] takeSourceCount = null!;
+        [SerializeField] private ButtonsSource takeSource;
+        [SerializeField] private int takeSourceCount;
         
         [Space]
         [SerializeField] private Sources source = null!;
         [SerializeField] private GameObject blockObj = null!;
         
-        [Space] 
-        [SerializeField] private Possession.ChoicePossession possessionValue;
 
 
         private const int HugerValue = 5;
@@ -37,16 +44,26 @@ namespace DYakubenko.Scripts.Buttons
         {
             if (source == null
                 || possession == null
+                || timeText == null
+                || moneyText == null
+                || conditionText == null
+                || blockText == null
                 )
             {
                 throw new NullReferenceException();
             }
+            thisButton = GetComponent<Button>();
         }
 
         private void Start()
         {
-            thisButton = GetComponent<Button>();
             thisButton.onClick.AddListener(Check);
+            var time = getTimeTodoSource.ToString();
+            var money = getMoneySource.ToString();
+            var condition  = takeSourceCount.ToString();
+            timeText.text = $"-{time}";
+            moneyText.text = $"-{money}";
+            conditionText.text = $"+{condition}";
         }
 
         private void Check()
@@ -64,9 +81,7 @@ namespace DYakubenko.Scripts.Buttons
 
         private void RefreshAllSource()
         {
-            for (int i = 0; i < takeSource.Length; i++)
-            {
-                switch (takeSource[i].ToString())
+            switch (takeSource.ToString())
                 {
                     case "Health" :
                         source.GetSource("Mood", MoodValue);
@@ -79,8 +94,7 @@ namespace DYakubenko.Scripts.Buttons
                         source.GetSource("Hunger", HugerValue);
                         break;
                 }
-                source.AddSource(takeSource[i].ToString(), takeSourceCount[i]);
-            }
+                source.AddSource(takeSource.ToString(), takeSourceCount);
         }
 
 
@@ -90,7 +104,6 @@ namespace DYakubenko.Scripts.Buttons
             switch (poss)
             {
                 case "None":
-                    print("None possession");
                     UnBlockButton();
                     break;
                 default:
@@ -98,7 +111,7 @@ namespace DYakubenko.Scripts.Buttons
                     {
                         if (value is false)
                         {
-                            BlockButton();
+                            BlockButton(poss);
                         }
                         else
                         {
@@ -109,10 +122,31 @@ namespace DYakubenko.Scripts.Buttons
             }
         }
 
-        private void BlockButton()
+        private void BlockButton(string name)
         {
             blockObj.SetActive(true);
             thisButton.interactable = false;
+            switch (name)
+            {
+                case "DrivingLicense" :
+                    blockText.text = "Нужно водительское удостоверение";
+                    break;
+                case "TechnicalEducation" :
+                    blockText.text = "Нужно техническое образование";
+                    break;
+                case "HigherEducation" :
+                    blockText.text = "Нужно высшее образование";
+                    break;
+                case "Car" :
+                    blockText.text = "Нужна машина";
+                    break;
+                case "House" :
+                    blockText.text = "Нужен дом";
+                    break;
+                case "Business" :
+                    blockText.text = "Нужен бизнес";
+                    break;
+            }
         }
 
         private void UnBlockButton()

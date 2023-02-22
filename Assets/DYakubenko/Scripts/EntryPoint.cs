@@ -44,7 +44,6 @@ namespace DYakubenko.Scripts
             {
                 throw new NullReferenceException();
             }
-            
         }
 
         private void Start()
