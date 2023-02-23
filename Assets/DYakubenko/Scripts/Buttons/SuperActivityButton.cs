@@ -36,8 +36,8 @@ namespace DYakubenko.Scripts.Buttons
         
 
 
-        private const int HugerValue = 5;
-        private const int MoodValue = 7;
+        private const int HugerValue = 4;
+        private const int MoodValue = 6;
 
 
         private void Awake()
@@ -70,7 +70,7 @@ namespace DYakubenko.Scripts.Buttons
         {
             var money = source.CheckSource("Money");
             var timeTodo = source.CheckSource("TimeTODO");
-            if (getMoneySource < money && getTimeTodoSource < timeTodo)
+            if (getMoneySource <= money && getTimeTodoSource <= timeTodo)
             {
                 source.GetSource("Money", getMoneySource);
                 source.GetSource("TimeTODO", getTimeTodoSource);

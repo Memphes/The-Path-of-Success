@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Net.Sockets;
 using DYakubenko.Scripts.Source;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,8 @@ namespace DYakubenko.Scripts.Buttons
 
         [Space] 
         [SerializeField] private Possession.ChoicePossession possessionValue;
+        private const int HugerValue = 4;
+        private const int MoodValue = 6;
 
 
         private void Awake()
@@ -48,13 +51,11 @@ namespace DYakubenko.Scripts.Buttons
         private void CheckToDo()
         {
             var result = source.GetSource("TimeTODO", timeCount);
-            if (result < 0)
-            {
-                print(result);
-            }
-            else
+            if (result >= 0)
             {
                 source.AddSource("Money", moneyCount);
+                source.GetSource("Mood", MoodValue);
+                source.GetSource("Hunger", HugerValue);
             }
         }
 
