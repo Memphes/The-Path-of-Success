@@ -54,7 +54,7 @@ namespace DYakubenko.Scripts.Buttons
             }
             else
             {
-                
+                source.AddSource("Money", moneyCount);
             }
         }
 

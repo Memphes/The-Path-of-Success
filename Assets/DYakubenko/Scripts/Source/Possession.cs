@@ -14,7 +14,7 @@ namespace DYakubenko.Scripts.Source
         public event Action<string, bool> PossessionUpdate = null!;
 
 
-        public bool GetPossession(string namePossession)
+        public bool CheckPossession(string namePossession)
         {
             return _possession![namePossession];
         }
