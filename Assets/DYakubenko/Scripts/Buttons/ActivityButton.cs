@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using System.Net.Sockets;
 using DYakubenko.Scripts.Source;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +20,11 @@ namespace DYakubenko.Scripts.Buttons
         [SerializeField] private Sources source = null!;
         [SerializeField] private TextMeshProUGUI timeText = null!;
         [SerializeField] private TextMeshProUGUI moneyText = null!;
+        
+        [Space]
+        [SerializeField] private Possession possession = null!;
+        [SerializeField] private GameObject blockObj = null!;
+        [SerializeField] private TextMeshProUGUI blockText = null!;
 
         [Space] 
         [SerializeField] private Possession.ChoicePossession possessionValue;
@@ -32,15 +36,19 @@ namespace DYakubenko.Scripts.Buttons
         {
             if (source == null 
                 || timeText == null 
-                || moneyText == null)
+                || moneyText == null
+                || possession == null
+                || blockObj == null
+                || blockText == null
+                )
             {
                 throw new NullReferenceException();
             }
+            thisButton = GetComponent<Button>();
         }
 
         private void Start()
         {
-            thisButton = GetComponent<Button>();
             thisButton.onClick.AddListener(CheckToDo);
 
             timeText.text = $"-{timeCount.ToString()}";
@@ -59,9 +67,57 @@ namespace DYakubenko.Scripts.Buttons
             }
         }
 
-        private void CheckPossession()
+        private void CheckByBlock(string namePossession, bool value)
         {
-            
+            var poss = possessionValue.ToString();
+            switch (poss)
+            {
+                case "None":
+                    UnBlockButton();
+                    break;
+                default:
+                    if (namePossession == poss)
+                    {
+                        if (value is false)
+                        {
+                            BlockButton(poss);
+                        }
+                        else
+                        {
+                            UnBlockButton();
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void BlockButton(string namePoss)
+        {
+            blockObj.SetActive(true);
+            thisButton.interactable = false;
+            blockText.text = namePoss switch
+             {
+                 "DrivingLicense" => "Нужно водительское удостоверение",
+                 "TechnicalEducation" => "Нужно техническое образование",
+                 "HigherEducation" => "Нужно высшее образование",
+                 "Car" => "Нужна машина",
+                 "House" => "Нужен дом",
+                 "Business" => "Нужен бизнес",
+                 _ => blockText.text
+             };
+        }
+
+        private void UnBlockButton()
+        {
+            blockObj.SetActive(false);
+            thisButton.interactable = true;
+        }
+
+        private void OnEnable()
+        {
+            var namePoss = possessionValue.ToString();
+            var value = possession.CheckPossession(namePoss);
+            CheckByBlock(namePoss, value); 
         }
 
     }

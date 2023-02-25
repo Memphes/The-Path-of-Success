@@ -34,11 +34,9 @@ namespace DYakubenko.Scripts.Buttons
         [SerializeField] private Sources source = null!;
         [SerializeField] private GameObject blockObj = null!;
         
-
-
         private const int HugerValue = 4;
         private const int MoodValue = 6;
-
+        
 
         private void Awake()
         {
@@ -58,12 +56,9 @@ namespace DYakubenko.Scripts.Buttons
         private void Start()
         {
             thisButton.onClick.AddListener(Check);
-            var time = getTimeTodoSource.ToString();
-            var money = getMoneySource.ToString();
-            var condition  = takeSourceCount.ToString();
-            timeText.text = $"-{time}";
-            moneyText.text = $"-{money}";
-            conditionText.text = $"+{condition}";
+            timeText.text = $"-{getTimeTodoSource.ToString()}";
+            moneyText.text = $"-{getMoneySource.ToString()}";
+            conditionText.text = $"+{takeSourceCount.ToString()}";
         }
 
         private void Check()
@@ -126,27 +121,16 @@ namespace DYakubenko.Scripts.Buttons
         {
             blockObj.SetActive(true);
             thisButton.interactable = false;
-            switch (name)
+            blockText.text = name switch
             {
-                case "DrivingLicense" :
-                    blockText.text = "Нужно водительское удостоверение";
-                    break;
-                case "TechnicalEducation" :
-                    blockText.text = "Нужно техническое образование";
-                    break;
-                case "HigherEducation" :
-                    blockText.text = "Нужно высшее образование";
-                    break;
-                case "Car" :
-                    blockText.text = "Нужна машина";
-                    break;
-                case "House" :
-                    blockText.text = "Нужен дом";
-                    break;
-                case "Business" :
-                    blockText.text = "Нужен бизнес";
-                    break;
-            }
+                "DrivingLicense" => "Нужно водительское удостоверение",
+                "TechnicalEducation" => "Нужно техническое образование",
+                "HigherEducation" => "Нужно высшее образование",
+                "Car" => "Нужна машина",
+                "House" => "Нужен дом",
+                "Business" => "Нужен бизнес",
+                _ => blockText.text
+            };
         }
 
         private void UnBlockButton()
@@ -155,16 +139,14 @@ namespace DYakubenko.Scripts.Buttons
             thisButton.interactable = true;
         }
 
-        private void OnEnable()
-        {
-            possession.PossessionUpdate += CheckByBlock;
-        }
+       private void OnEnable()
+       {
+           var namePoss = possessionValue.ToString();
+           var value = possession.CheckPossession(namePoss);
+           CheckByBlock(namePoss, value); 
+       }
 
-        private void OnDisable()
-        {
-            possession.PossessionUpdate -= CheckByBlock;
-        }
-
+       
         private enum ButtonsSource
         {
             Health,

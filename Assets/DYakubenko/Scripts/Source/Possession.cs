@@ -4,6 +4,8 @@ using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace DYakubenko.Scripts.Source
 {
@@ -13,13 +15,16 @@ namespace DYakubenko.Scripts.Source
 
         public event Action<string, bool> PossessionUpdate = null!;
 
-
         public bool CheckPossession(string namePossession)
         {
             return _possession![namePossession];
         }
-
-
+        
+        public void ChangePossession(string namePossession, bool value)
+        {
+            _possession![name] = value;
+            PossessionRefresh(namePossession);
+        }
 
 
 
@@ -28,9 +33,10 @@ namespace DYakubenko.Scripts.Source
             var raw = PlayerPrefs.GetString("PossessionKey");
             _possession = string.IsNullOrWhiteSpace(raw)
                 ? new Dictionary<string, bool>()
-                {
+                {   
+                    {"None" , true},
                     {"DrivingLicense", false},
-                    {"TechnicalEducation" , true},
+                    {"TechnicalEducation" , false},
                     {"HigherEducation", false},
                     
                     {"Car", false},
@@ -47,6 +53,7 @@ namespace DYakubenko.Scripts.Source
             PlayerPrefs.SetString("PossessionKey", json);
         }
         
+        [ContextMenu(nameof(PossessionRefreshALl))]
         public void PossessionRefreshALl()
         {
             foreach (var item in _possession!)
@@ -55,7 +62,7 @@ namespace DYakubenko.Scripts.Source
             }
         }
         
-        public void PossessionRefresh(string key)
+        private void PossessionRefresh(string key)
         {
             PossessionUpdate?.Invoke(key, _possession![key]);
         }
