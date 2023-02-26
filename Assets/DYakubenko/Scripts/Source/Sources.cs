@@ -25,6 +25,7 @@ namespace DYakubenko.Scripts.Source
         {
             return _sourcesHub![nameSource];
         }
+        
 
         public int GetSource (string nameSource, int count)
         {
@@ -38,8 +39,7 @@ namespace DYakubenko.Scripts.Source
                 {
                     _sourcesHub![nameSource] -= sourceValue;
                     sourceValue -= count;
-                    _sourcesHub["Health"] += sourceValue;
-                    ActionUpdate("Health");
+                    AddSource("Health", sourceValue);
                 }
                 else
                 {
@@ -59,7 +59,8 @@ namespace DYakubenko.Scripts.Source
         {
             if (nameSource is "Health" or "Hunger" or "Mood")
             {
-                _sourcesHub![nameSource] += Mathf.Clamp(count, min, max);
+                var value = Mathf.Clamp( _sourcesHub![nameSource] + count, min, max);
+                _sourcesHub![nameSource] = value;
             }
             else
             {
