@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using DYakubenko.Scripts.Conditions;
 using DYakubenko.Scripts.Images;
 using DYakubenko.Scripts.Source;
 using DYakubenko.Scripts.UI;
@@ -15,28 +14,18 @@ namespace DYakubenko.Scripts
          [SerializeField] private Possession possession = null!;
          
          [Space]
-         [SerializeField] private ButtonManager buttonManager = null!;
          [SerializeField] private MonthCounter monthCounter = null!;
          [SerializeField] private StatisticView statisticView = null!;
          
-         [Space]
-         [SerializeField] private HealthCondition healthCondition = null!;
-         [SerializeField] private HungerCondition hungerCondition = null!;
-         [SerializeField] private MoodCondition moodCondition = null!;
-
          [Space] 
          [SerializeField] private HumanImage humanImage = null!;
          [SerializeField] private BackGroundImage backGroundImage = null!;
 
          private void Awake()
         {
-            if (sources == null 
-                || buttonManager == null 
+            if (sources == null
                 || monthCounter == null 
                 || statisticView == null
-                || healthCondition == null
-                || hungerCondition == null
-                || moodCondition == null
                 || possession == null
                 || humanImage == null
                 || backGroundImage == null

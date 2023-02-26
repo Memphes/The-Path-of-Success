@@ -12,7 +12,8 @@ namespace DYakubenko.Scripts.Source
 
         private Dictionary<string, int>? _sourcesHub = new Dictionary<string, int>();
         public event Action<string, int>? SourceUpdate;
-
+        private int min = 0;
+        private int max = 100;
         
         
         private void ActionUpdate(string nameSource)
@@ -33,22 +34,37 @@ namespace DYakubenko.Scripts.Source
 
             if (sourceValue < count)
             {
-                sourceValue -= count;
-                var deficit = Mathf.Abs(sourceValue);
-                print($"Не хватает {deficit} {nameSource}");
+                if (nameSource is "Mood" or "Hunger")
+                {
+                    _sourcesHub![nameSource] -= sourceValue;
+                    sourceValue -= count;
+                    _sourcesHub["Health"] += sourceValue;
+                    ActionUpdate("Health");
+                }
+                else
+                {
+                    sourceValue -= count;
+                }
             }
             else
             {
                 sourceValue -= count;
                 _sourcesHub[nameSource] = sourceValue;
-                ActionUpdate(nameSource);
             }
+            ActionUpdate(nameSource);
             return sourceValue;
         }
 
         public int AddSource(string nameSource, int count)
         {
-            _sourcesHub![nameSource] += count;
+            if (nameSource is "Health" or "Hunger" or "Mood")
+            {
+                _sourcesHub![nameSource] += Mathf.Clamp(count, min, max);
+            }
+            else
+            {
+                _sourcesHub![nameSource] += count;
+            }
             ActionUpdate(nameSource);
             return _sourcesHub[nameSource];
         }

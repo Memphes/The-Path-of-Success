@@ -13,12 +13,16 @@ namespace DYakubenko.Scripts.UI
         [SerializeField] private Button shop = null!;
         [SerializeField] private Button activity = null!;
         [SerializeField] private Button settings = null!;
+        [SerializeField] private Button work = null!;
+        [SerializeField] private Button job = null!;
 
         [Space]
         [SerializeField] private GameObject trainingObj = null!;
         [SerializeField] private GameObject shopObj = null!;
         [SerializeField] private GameObject activityObj = null!;
         [SerializeField] private GameObject settingsObj = null!;
+        [SerializeField] private GameObject workActivityObj = null!;
+        [SerializeField] private GameObject jobActivityObj = null!;
 
         [Space]
         [SerializeField] private Button healthShopButtons = null!;
@@ -51,6 +55,8 @@ namespace DYakubenko.Scripts.UI
                 || realtyShopButtons == null
                 || carShopButtons == null
                 || moreShopButtons == null
+                || work == null
+                || job == null
                 )
             {
                 throw new NullReferenceException();
@@ -66,6 +72,8 @@ namespace DYakubenko.Scripts.UI
                 || realtyShopObj == null
                 || carShopObj == null
                 || moreShopObj == null
+                || workActivityObj == null
+                || jobActivityObj == null
                 )
             {
                 throw new NullReferenceException();
@@ -80,6 +88,8 @@ namespace DYakubenko.Scripts.UI
             shop.onClick.AddListener(OpenShop);
             activity.onClick.AddListener(OpenActivitys);
             settings.onClick.AddListener(OpenSetting);
+            work.onClick.AddListener(OpenWork);
+            job.onClick.AddListener(OpenJob);
             
             healthShopButtons.onClick.AddListener(OpenHealthShop);
             hungerShopButtons.onClick.AddListener(OpenHungerShop);
@@ -148,6 +158,18 @@ namespace DYakubenko.Scripts.UI
             CloseAllObj();
             settingsObj.SetActive(true);
         }
+        
+        private void OpenWork()
+        {
+            CloseAllObj();
+            workActivityObj.SetActive(true);
+        }
+        
+        private void OpenJob()
+        {
+            CloseAllObj();
+            jobActivityObj.SetActive(true);
+        }
 
         private void CloseAllObj()
         {
@@ -155,6 +177,8 @@ namespace DYakubenko.Scripts.UI
             shopObj.SetActive(false);
             activityObj.SetActive(false);
             settingsObj.SetActive(false);
+            workActivityObj.SetActive(false);
+            jobActivityObj.SetActive(false);
             
             healthShopObj.SetActive(false);
             hungerShopObj.SetActive(false);
